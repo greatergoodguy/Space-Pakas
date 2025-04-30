@@ -1,0 +1,4 @@
+repository "Space Pakas 2025-04-22_13-48-59/Space Pakas@421115@cloud"
+  path "/"
+    br "/main"
+    co "/main"
