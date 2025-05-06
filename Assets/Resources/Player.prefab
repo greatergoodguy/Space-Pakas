@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3b3afea3ef4329a32fbc46e5b4e6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 0.1
   rotationSpeed: 180
   recoilForce: 1
-  maxSpeed: 8
+  maxSpeed: 16
   bulletPrefab: {fileID: 2177991660287547120, guid: 258b773c1e39146009ff4176bed956a1, type: 3}
   playerNumber: 0

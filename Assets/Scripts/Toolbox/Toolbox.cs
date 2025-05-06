@@ -44,4 +44,11 @@ UnityEngine.Debug.Log(message);
 
 		return Object.Instantiate(prefab, pos, rot);
 	}
+
+	public static GameObject CreatePlayer(PlayerNumber playerNumber)
+	{
+		GameObject player = Toolbox.Create("Player");
+		player.GetComponent<ShipController>().playerNumber = playerNumber;
+		return player;
+	}
 }

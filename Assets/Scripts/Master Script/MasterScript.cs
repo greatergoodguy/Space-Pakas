@@ -22,7 +22,6 @@ public class MasterScript : MonoBehaviour {
         }
 
         Toolbox.Log("Start()");
-        
         seasonOfTime.Enter();
         Toolbox.Log(seasonOfTime.GetType().Name + ": Enter");
     }

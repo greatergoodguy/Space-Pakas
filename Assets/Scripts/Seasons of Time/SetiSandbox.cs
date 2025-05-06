@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ public class SetiSandbox : Seti_Base {
     
     MenuPause _menuPause;
     
-    GameObject _player1, _player2, _player3, _player4;
+    GameObject _cargo, _player1, _player2, _player3, _player4;
 
     void Awake() {
         I = this;
@@ -28,15 +29,15 @@ public class SetiSandbox : Seti_Base {
         
         ManagerMusic.Play(0);
         SceneManager.LoadScene("Sandbox", LoadSceneMode.Additive);
+
+        _cargo = Toolbox.Create("CargoPod");
         
-        _player1 = Toolbox.Create("Player");
-        _player1.GetComponent<ShipController>().playerNumber = PlayerNumber.P1;
-        _player2 = Toolbox.Create("Player");
-        _player2.GetComponent<ShipController>().playerNumber = PlayerNumber.P2;
-        _player3 = Toolbox.Create("Player");
-        _player3.GetComponent<ShipController>().playerNumber = PlayerNumber.P3;
-        _player4 = Toolbox.Create("Player");
-        _player4.GetComponent<ShipController>().playerNumber = PlayerNumber.P4;
+        _player1 = Toolbox.CreatePlayer(PlayerNumber.P1);
+        _player2 = Toolbox.CreatePlayer(PlayerNumber.P2);
+        _player3 = Toolbox.CreatePlayer(PlayerNumber.P3);
+        _player4 = Toolbox.CreatePlayer(PlayerNumber.P4);
+        
+        _cargo.GetComponent<Cargo>().AttachPlayers(new List<GameObject> { _player1, _player2, _player3, _player4 });
     }
     
     public override void UpdateSeason() {
@@ -58,6 +59,7 @@ public class SetiSandbox : Seti_Base {
         if (SceneManager.GetSceneByName("Sandbox").isLoaded)
             SceneManager.UnloadSceneAsync("Sandbox");
         
+        if (_cargo) Destroy(_cargo);
         if (_player1) Destroy(_player1);
         if (_player2) Destroy(_player2);
         if (_player3) Destroy(_player3);
@@ -92,5 +94,10 @@ public class SetiSandbox : Seti_Base {
         _menuPause.Hide();
         _nextSeason = SetiStart.I;
         _isFinished = true;
+    }
+    
+    public void AttachPlayers(GameObject[] players)
+    {
+        
     }
 }
