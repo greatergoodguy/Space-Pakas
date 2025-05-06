@@ -4,12 +4,12 @@ public class PlayerInputP3: PlayerInput_Base
 {
     public override bool GetKeyForward()
     {
-        return Input.GetKey(KeyCode.I);
+        return Input.GetKeyDown(KeyCode.I);
     }
 
     public override bool GetKeyFire()
     {
-        return Input.GetKeyDown(KeyCode.K);
+        return Input.GetKey(KeyCode.K);
     }
 
     public override float GetAxisHorizontal()

@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    public float speed = 0.01f;
-    public float rotationSpeed = 180f;
-    public float recoilForce = 1f;
-    public float maxSpeed = 8f;
     public GameObject bulletPrefab;
 
     private Rigidbody2D rb;
@@ -32,10 +28,10 @@ public class ShipController : MonoBehaviour
     void Update()
     {
         // Apply forward movement
-        if (_playerInput.GetKeyForward())
-        {
-            ApplyForwardMovement();
-        }
+        // if (_playerInput.GetKeyForward())
+        // {
+        //     ApplyForwardMovement();
+        // }
 
         // Apply rotation
         if (_playerInput.GetAxisHorizontal() != 0)
@@ -44,7 +40,7 @@ public class ShipController : MonoBehaviour
         }
 
         // Apply recoil force when shooting
-        if (_playerInput.GetKeyFire())
+        if (_playerInput.GetKeyFire() || _playerInput.GetKeyForward())
         {
             ShootBullet();
             ApplyRecoil();
@@ -53,17 +49,17 @@ public class ShipController : MonoBehaviour
 
     void ApplyForwardMovement()
     {
-        rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+        rb.AddForce(transform.up * Constants.I.speed, ForceMode2D.Impulse);
     }
 
     void ApplyRotation(float rotationInput)
     {
-        transform.Rotate(0, 0, rotationInput * rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, rotationInput * Constants.I.rotationSpeed * Time.deltaTime);
     }
 
     void ApplyRecoil()
     {
-        rb.AddForce(-transform.up * recoilForce, ForceMode2D.Impulse);
+        rb.AddForce(-transform.up * Constants.I.recoilForce, ForceMode2D.Impulse);
     }
 
     void ShootBullet()
@@ -80,9 +76,9 @@ public class ShipController : MonoBehaviour
 
     void CapVelocity()
     {
-        if (rb.linearVelocity.magnitude > maxSpeed)
+        if (rb.linearVelocity.magnitude > Constants.I.maxSpeed)
         {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            rb.linearVelocity = rb.linearVelocity.normalized * Constants.I.maxSpeed;
         }
     }
 }
