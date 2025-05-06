@@ -12,7 +12,7 @@ public class SetiSandbox : Seti_Base {
     
     MenuPause _menuPause;
     
-    GameObject _player1, _player2;
+    GameObject _player1, _player2, _player3, _player4;
 
     void Awake() {
         I = this;
@@ -29,10 +29,16 @@ public class SetiSandbox : Seti_Base {
         ManagerMusic.Play(0);
         SceneManager.LoadScene("Sandbox", LoadSceneMode.Additive);
         
-        _player1 = Toolbox.Create("Player 1");
-        _player2 = Toolbox.Create("Player 2");
+        _player1 = Toolbox.Create("Player");
+        _player1.GetComponent<ShipController>().playerNumber = PlayerNumber.P1;
+        _player2 = Toolbox.Create("Player");
+        _player2.GetComponent<ShipController>().playerNumber = PlayerNumber.P2;
+        _player3 = Toolbox.Create("Player");
+        _player3.GetComponent<ShipController>().playerNumber = PlayerNumber.P3;
+        _player4 = Toolbox.Create("Player");
+        _player4.GetComponent<ShipController>().playerNumber = PlayerNumber.P4;
     }
-
+    
     public override void UpdateSeason() {
         if (Input.GetKeyDown(KeyCode.Escape) && !_isPaused)
         {
@@ -54,6 +60,8 @@ public class SetiSandbox : Seti_Base {
         
         if (_player1) Destroy(_player1);
         if (_player2) Destroy(_player2);
+        if (_player3) Destroy(_player3);
+        if (_player4) Destroy(_player4);
     }
 
     public override bool IsFinished() {

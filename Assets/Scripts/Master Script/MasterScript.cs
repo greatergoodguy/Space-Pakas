@@ -34,8 +34,8 @@ public class MasterScript : MonoBehaviour {
             seasonOfTime.Exit();
             Toolbox.Log(seasonOfTime.GetType().Name + ": Exit");
             seasonOfTime = seasonOfTime.GetNextSeason();
-            seasonOfTime.Enter();
             Toolbox.Log(seasonOfTime.GetType().Name + ": Enter");
+            seasonOfTime.Enter();
         }
     }
 }
